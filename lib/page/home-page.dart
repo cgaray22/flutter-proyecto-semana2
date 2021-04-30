@@ -48,11 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   double _estatura = 166;
 
   Color color_1 = const Color(0xFF212122);
-  Color color_2 = const Color(0xFF212122);    
-
-  
-
-
+  Color color_2 = const Color(0xFF212122);
 
   @override
   Widget build(BuildContext context) {

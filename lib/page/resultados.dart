@@ -108,27 +108,27 @@ class ResultadoPage extends StatelessWidget {
 
       if(resultado<18.5){
         _categoria = "Bajo Peso".toUpperCase();
-        _mensaje = "Cuidate estas bajo de peso";        
+        _mensaje = "Cuídate estas bajo de peso, ¡Ah alimentarse mejor!";        
       }
       if(resultado >= 18.5 && resultado <= 24.9){
         _categoria = "Peso Normal".toUpperCase();
-        _mensaje = "Tiene un peso corporal normal ¡buen trabajo!";        
+        _mensaje = "Tiene un peso corporal normal ¡Buen trabajo!";        
       }
       if(resultado >= 25 && resultado <= 29.9){
         _categoria = "Sobrepeso".toUpperCase();
-        _mensaje = "Cuidate estas en sobrepeso";
+        _mensaje = "Cuídate estas en sobrepeso, ¡Haz ejercicio y aliméntate bien!";
       }
       if(resultado >= 30 && resultado <= 34.5){
         _categoria = "Obesidad grado I".toUpperCase();
-        _mensaje = "Cuidate, debes hacer ejecicio";
+        _mensaje = "Cuídate, debes hacer ejercicio ¡Consulta un Nutricionista!";
       }
       if(resultado >= 35 && resultado <= 39.9){
         _categoria = "Obesidad grado II".toUpperCase();
-        _mensaje = "Cuidate, Obesidad grado II";
+        _mensaje = "Cuídate, debes hacer ejercicio ¡Consulta un Nutricionista!";
       }
       if(resultado >= 40){
         _categoria = "Obesidad grado III".toUpperCase();
-        _mensaje = "Cuidate, obesidad grado III";
+        _mensaje = "¡Consulta a tu especialista para arreglar esto!";
       }      
   }
 }
