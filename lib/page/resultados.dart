@@ -102,13 +102,14 @@ class ResultadoPage extends StatelessWidget {
   void calcularIMC() { 
       double rtaAltura = (estatura) / 100;
       double alturapordos = rtaAltura * rtaAltura;
-      double resultado = counter_peso / alturapordos;     
+      double resultado = counter_peso / alturapordos; 
+      resultado = double.parse(resultado.toStringAsFixed(1));     
 
       _imc = "$resultado"; 
 
       if(resultado<18.5){
-        _mensaje = "Bajo Peso";
-        _categoria = "Cuidate estas bajo de peso";        
+        _categoria = "Bajo Peso";
+        _mensaje = "Cuidate estas bajo de peso";        
       }
       if(resultado >= 18.5 && resultado <= 24.9){
         _categoria = "Peso Normal";

@@ -136,7 +136,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Padding(
           padding: const EdgeInsets.all(18.0),
-          child: Expanded(
+          child: Row(
+    children: [Expanded(
               child: Container(
                   decoration: BoxDecoration(
                     color: const Color(0xFF212122),
@@ -193,7 +194,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 ),
                               )
                             ])
-                      ]))),
+                      ])))]),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
