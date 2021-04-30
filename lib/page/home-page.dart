@@ -11,7 +11,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter_peso = 0;
+  int _counter_peso = 50;
 
   String  _genero = "";
 
@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  int _counter_edad = 0;
+  int _counter_edad = 50;
 
   void _incrementCounterEdad() {
     setState(() {
@@ -46,7 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   double _estatura = 166;
+
+  Color color_1 = const Color(0xFF212122);
+  Color color_2 = const Color(0xFF212122);    
+
   
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -68,25 +74,27 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Container(
                 height: 160,
-                width: 160,
+                width: 160,                                                
                 decoration: BoxDecoration(
-                  color: const Color(0xFF212122),
-                  borderRadius: BorderRadius.circular(10),
+                  color: color_1,
+                  borderRadius: BorderRadius.circular(10),                  
                 ),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
+                    children: [                      
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,                          
+                          children: [                            
                             Expanded(
                               child: FlatButton(
                                 onPressed: () {
                                   setState(() {
-                                    _genero = "m";
+                                    _genero = "m";                                    
+                                    color_2 = const Color(0xFF212122);
+                                    color_1 = Colors.grey;
                                   });
                                 },     
-                               // color: Colors.pinkAccent,
+                               // color: Colors.pinkAccent,                                
                                 padding: EdgeInsets.all(40.0),
                                 child: Column(
                                   children: <Widget>[
@@ -103,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 160,
                 width: 160,
                 decoration: BoxDecoration(
-                  color: const Color(0xFF212122),
+                  color: color_2,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Column(
@@ -117,6 +125,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {
                                   setState(() {
                                     _genero = "f";
+                                    color_1 = const Color(0xFF212122);
+                                    color_2 = Colors.grey;
                                   });
                                 },                              
                                 padding: EdgeInsets.all(40.0),
