@@ -13,6 +13,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter_peso = 0;
 
+  String  _genero = "";
+
   void _incrementCounterPeso() {
     setState(() {
       _counter_peso++;
@@ -21,7 +23,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounterPeso() {
     setState(() {
-      _counter_peso--;
+      if (_counter_peso > 1) {
+        _counter_peso--;
+      }
     });
   }
 
@@ -35,21 +39,62 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounterEdad() {
     setState(() {
-      _counter_edad--;
+      if (_counter_edad > 1) {
+        _counter_edad--;
+      }
     });
   }
 
-  double estatura = 50;
+  double estatura = 166;
 
   String imc = "";
+  String mensaje = "";
+  String categoria = "";
 
   void CalcularIMC() { 
       double rtaAltura = (estatura) / 100;
       double alturapordos = rtaAltura * rtaAltura;
-      double result = _counter_peso / alturapordos;    
+      double resultado = _counter_peso / alturapordos;    
+
+      if(resultado<18.5){
+         setState(() {
+          categoria = "Bajo Peso";
+          mensaje = "Cuidate estas bajo de peso";
+        });
+      }
+      if(resultado >= 18.5 && resultado <= 24.9){
+         setState(() {
+          categoria = "Peso Normal";
+          mensaje = "Tiene un peso corporal normal ¡buen trabajo!";
+        });
+      }
+      if(resultado >= 25 && resultado <= 29.9){
+         setState(() {
+          categoria = "Sobrepeso";
+          mensaje = "Cuidate estas en sobrepeso";
+        });
+      }
+      if(resultado >= 30 && resultado <= 34.5){
+         setState(() {
+          categoria = "Obesidad grado I";
+          mensaje = "Cuidate, debes hacer ejecicio";
+        });
+      }
+      if(resultado >= 35 && resultado <= 39.9){
+         setState(() {
+          categoria = "Obesidad grado II";
+          mensaje = "Cuidate, Obesidad grado II";
+        });
+      }
+      if(resultado >= 40){
+         setState(() {
+          categoria = "Obesidad grado III";
+          mensaje = "Cuidate, obesidad grado III";
+        });
+      }
 
       setState(() {
-        imc = "Su IMC es $result";
+        imc = "$resultado";
       });
   }
 
@@ -84,10 +129,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            new Tab(
-                                icon: new Image.asset("assets/images/male.png",
-                                    height: 40),
-                                text: "Hombre")
+                            Expanded(
+                              child: FlatButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _genero = "m";
+                                  });
+                                },     
+                               // color: Colors.pinkAccent,
+                                padding: EdgeInsets.all(40.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    new Tab(
+                                      icon: new Image.asset("assets/images/male.png",
+                                      height: 40),
+                                      text: "Hombre")
+                                  ],
+                                ),
+                              )),
                           ])
                     ])),
             Container(
@@ -103,10 +162,23 @@ class _MyHomePageState extends State<MyHomePage> {
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            new Tab(
-                                icon: new Image.asset("assets/images/female.png",
-                                    height: 40),
-                                text: "Mujer")
+                            Expanded(
+                              child: FlatButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _genero = "f";
+                                  });
+                                },                              
+                                padding: EdgeInsets.all(40.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    new Tab(
+                                      icon: new Image.asset("assets/images/female.png",
+                                      height: 40),
+                                      text: "Mujer")
+                                  ],
+                                ),
+                              )),
                           ])
                     ])),
             
@@ -157,8 +229,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                     valueIndicatorColor: Colors.pink),
                                 child: Slider(
                                   value: estatura,
-                                  min: 50,
-                                  max: 200,
+                                  min: 10,
+                                  max: 220,
                                   divisions: 100,
                                   label:
                                       estatura.round().toString() +
@@ -273,17 +345,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      FlatButton(
+                      Expanded(
+                        child: FlatButton(
                         onPressed: CalcularIMC,
                         shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(60.0)),
+                          borderRadius: new BorderRadius.circular(0.0)),
                           color: Colors.pink,
                           padding: EdgeInsets.all(30.0),
                           child: Column(
                             children: <Widget>[Text('Calcular')],
                           ),
                       ),
-                    ])
+                )]),
               ])),
         ),
         Container(                    
@@ -293,7 +366,26 @@ class _MyHomePageState extends State<MyHomePage> {
               fontSize: 20.0,
             ),
           ),
-        ),    
+          
+        ), 
+        Container(                    
+          child: Text(
+            categoria,
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          
+        ),
+        Container(                    
+          child: Text(
+            mensaje,
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          
+        ),   
       ],
    
     );
