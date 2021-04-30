@@ -5,7 +5,6 @@ class ResultadoPage extends StatelessWidget {
   final double estatura;
   final String genero;
   String _categoria = "", _mensaje = "", _imc = ""; 
-  Color color = Colors.white;
 
   ResultadoPage(
       {required this.counter_edad,
@@ -39,7 +38,7 @@ class ResultadoPage extends StatelessWidget {
           child: Container(
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(8),
               color: Colors.grey[800],
             ),
             child: Column(
@@ -51,7 +50,7 @@ class ResultadoPage extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: color),
+                        color: Colors.lightGreen),
                   ),
                 ),
                 Center(
@@ -108,27 +107,27 @@ class ResultadoPage extends StatelessWidget {
       _imc = "$resultado"; 
 
       if(resultado<18.5){
-        _categoria = "Bajo Peso";
+        _categoria = "Bajo Peso".toUpperCase();
         _mensaje = "Cuidate estas bajo de peso";        
       }
       if(resultado >= 18.5 && resultado <= 24.9){
-        _categoria = "Peso Normal";
+        _categoria = "Peso Normal".toUpperCase();
         _mensaje = "Tiene un peso corporal normal ¡buen trabajo!";        
       }
       if(resultado >= 25 && resultado <= 29.9){
-        _categoria = "Sobrepeso";
+        _categoria = "Sobrepeso".toUpperCase();
         _mensaje = "Cuidate estas en sobrepeso";
       }
       if(resultado >= 30 && resultado <= 34.5){
-        _categoria = "Obesidad grado I";
+        _categoria = "Obesidad grado I".toUpperCase();
         _mensaje = "Cuidate, debes hacer ejecicio";
       }
       if(resultado >= 35 && resultado <= 39.9){
-        _categoria = "Obesidad grado II";
+        _categoria = "Obesidad grado II".toUpperCase();
         _mensaje = "Cuidate, Obesidad grado II";
       }
       if(resultado >= 40){
-        _categoria = "Obesidad grado III";
+        _categoria = "Obesidad grado III".toUpperCase();
         _mensaje = "Cuidate, obesidad grado III";
       }      
   }
