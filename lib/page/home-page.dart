@@ -45,58 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  double estatura = 166;
-
-  String imc = "";
-  String mensaje = "";
-  String categoria = "";
-
-  void CalcularIMC() { 
-      double rtaAltura = (estatura) / 100;
-      double alturapordos = rtaAltura * rtaAltura;
-      double resultado = _counter_peso / alturapordos;    
-
-      if(resultado<18.5){
-         setState(() {
-          categoria = "Bajo Peso";
-          mensaje = "Cuidate estas bajo de peso";
-        });
-      }
-      if(resultado >= 18.5 && resultado <= 24.9){
-         setState(() {
-          categoria = "Peso Normal";
-          mensaje = "Tiene un peso corporal normal ¡buen trabajo!";
-        });
-      }
-      if(resultado >= 25 && resultado <= 29.9){
-         setState(() {
-          categoria = "Sobrepeso";
-          mensaje = "Cuidate estas en sobrepeso";
-        });
-      }
-      if(resultado >= 30 && resultado <= 34.5){
-         setState(() {
-          categoria = "Obesidad grado I";
-          mensaje = "Cuidate, debes hacer ejecicio";
-        });
-      }
-      if(resultado >= 35 && resultado <= 39.9){
-         setState(() {
-          categoria = "Obesidad grado II";
-          mensaje = "Cuidate, Obesidad grado II";
-        });
-      }
-      if(resultado >= 40){
-         setState(() {
-          categoria = "Obesidad grado III";
-          mensaje = "Cuidate, obesidad grado III";
-        });
-      }
-
-      setState(() {
-        imc = "$resultado";
-      });
-  }
+  double _estatura = 166;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -209,7 +159,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                estatura.round().toString(),
+                                _estatura.round().toString(),
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 50),
                               ),
@@ -228,16 +178,16 @@ class _MyHomePageState extends State<MyHomePage> {
                                     inactiveTrackColor: Colors.white24,
                                     valueIndicatorColor: Colors.pink),
                                 child: Slider(
-                                  value: estatura,
+                                  value: _estatura,
                                   min: 10,
                                   max: 220,
                                   divisions: 100,
                                   label:
-                                      estatura.round().toString() +
+                                      _estatura.round().toString() +
                                           " cm",
                                   onChanged: (double value) {
                                     setState(() {
-                                      estatura = value;
+                                      _estatura = value;
                                     });
                                   },
                                 ),
@@ -347,7 +297,17 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       Expanded(
                         child: FlatButton(
-                        onPressed: CalcularIMC,
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResultadoPage(
+                                  counter_peso: _counter_peso,
+                                  counter_edad: _counter_edad,
+                                  estatura: _estatura,
+                                  genero: _genero,
+                                )));
+                        },
                         shape: new RoundedRectangleBorder(
                           borderRadius: new BorderRadius.circular(0.0)),
                           color: Colors.pink,
@@ -359,33 +319,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 )]),
               ])),
         ),
-        Container(                    
-          child: Text(
-            imc,
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          
-        ), 
-        Container(                    
-          child: Text(
-            categoria,
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          
-        ),
-        Container(                    
-          child: Text(
-            mensaje,
-            style: TextStyle(
-              fontSize: 20.0,
-            ),
-          ),
-          
-        ),   
+         
       ],
    
     );
